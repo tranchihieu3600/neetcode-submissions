@@ -74,3 +74,14 @@ minStack.getMin(); // return -2
 	- Methods `pop`, `top` and `getMin` operations will always be called on **non-empty** stacks.
 
 	- At most `3 * 104` calls will be made to `push`, `pop`, `top`, and `getMin`.
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+Consider each node in the stack having a minimum value. (Credits to @aakarshmadhavan)
+
+</details>
+

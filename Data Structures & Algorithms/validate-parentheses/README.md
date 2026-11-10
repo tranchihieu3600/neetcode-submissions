@@ -106,3 +106,28 @@ Example 5:**
 	- `1 4`
 
 	- `s` consists of parentheses only `&#39;()[]{}&#39;`.
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+Use a stack of characters.
+
+</details>
+
+<details>
+<summary><b>Gợi ý 2</b></summary>
+
+When you encounter an opening bracket, push it to the top of the stack.
+
+</details>
+
+<details>
+<summary><b>Gợi ý 3</b></summary>
+
+When you encounter a closing bracket, check if the top of the stack was the opening for it. If yes, pop it from the stack. Otherwise, return false.
+
+</details>
+

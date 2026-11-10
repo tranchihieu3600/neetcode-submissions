@@ -69,3 +69,28 @@ Example 3:**
 
 
 	- `3 5 5`
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!
+
+</details>
+
+<details>
+<summary><b>Gợi ý 2</b></summary>
+
+For the two-sum problem, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y, which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?
+
+</details>
+
+<details>
+<summary><b>Gợi ý 3</b></summary>
+
+The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?
+
+</details>
+

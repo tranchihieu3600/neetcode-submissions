@@ -51,7 +51,8 @@ MANUAL_MAPPING = {
 }
 
 def clean_html(raw_html):
-    """Làm sạch các thẻ HTML cơ bản từ API trả về để README dễ nhìn hơn"""
+    if not raw_html:
+        return ""
     clean_text = re.sub(r'<p>', '', raw_html)
     clean_text = re.sub(r'</p>', '\n\n', clean_text)
     clean_text = re.sub(r'<ul>', '\n', clean_text)
@@ -70,11 +71,11 @@ def clean_html(raw_html):
     clean_text = re.sub(r'&lt;', '<', clean_text)
     clean_text = re.sub(r'&gt;', '>', clean_text)
     clean_text = re.sub(r'&quot;', '"', clean_text)
-    # Loại bỏ các thẻ HTML còn lại
     clean_text = re.sub(r'<[^>]+>', '', clean_text)
     return clean_text.strip()
 
 def get_leetcode_problem(slug):
+    # Thêm trường 'hints' vào GraphQL query
     query = """
     query questionData($titleSlug: String!) {
         question(titleSlug: $titleSlug) {
@@ -82,6 +83,7 @@ def get_leetcode_problem(slug):
             title
             content
             difficulty
+            hints
         }
     }
     """
@@ -100,26 +102,27 @@ def get_leetcode_problem(slug):
 
 def main():
     for root, dirs, files in os.walk("."):
-        if ".git" in root or ".github" in root:
+        # Bỏ qua thư mục gốc và các thư mục hệ thống
+        if root == "." or ".git" in root or ".github" in root:
             continue
             
         has_code = any(f.endswith(('.py', '.cpp', '.java', '.js', '.go', '.c')) for f in files)
         readme_path = os.path.join(root, "README.md")
         
-        if has_code and not os.path.exists(readme_path):
+        # Nếu đã có file README, ta xóa đi để nó cập nhật lại bản mới có chứa Hints (hoặc bạn có thể tùy chọn bỏ điều kiện này)
+        if has_code:
             folder_name = os.path.basename(root)
-            
             slug = MANUAL_MAPPING.get(folder_name, folder_name)
             
-            print(f"Đang tải đề bài: {slug}...")
+            print(f"Đang cập nhật đề bài & gợi ý: {slug}...")
             problem_data = get_leetcode_problem(slug)
             
             if problem_data:
                 title = problem_data['title']
                 difficulty = problem_data['difficulty']
                 raw_content = problem_data['content']
+                hints = problem_data.get('hints', [])
                 
-                # Format nội dung
                 content = clean_html(raw_content) if raw_content else "Không tải được nội dung đề bài."
                 
                 readme_content = f"## {title}\n\n"
@@ -127,11 +130,18 @@ def main():
                 readme_content += f"---\n\n"
                 readme_content += f"{content}\n"
                 
+                # Thêm phần Gợi ý (Hints) nếu bài toán có hints
+                if hints:
+                    readme_content += "\n---\n## Gợi ý (Hints)\n\n"
+                    for i, hint in enumerate(hints):
+                        cleaned_hint = clean_html(hint)
+                        readme_content += f"<details>\n<summary><b>Gợi ý {i+1}</b></summary>\n\n{cleaned_hint}\n\n</details>\n\n"
+                
                 with open(readme_path, "w", encoding="utf-8") as f:
                     f.write(readme_content)
-                print(f"-> Đã tạo thành công {readme_path}")
+                print(f"-> Đã cập nhật thành công {readme_path}")
             else:
-                print(f"-> KHÔNG TÌM THẤY bài toán: {slug}. Hãy kiểm tra lại MANUAL_MAPPING.")
+                print(f"-> KHÔNG TÌM THẤY bài toán: {slug}")
 
 if __name__ == "__main__":
     main()

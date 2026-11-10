@@ -62,3 +62,28 @@ Example 2:**
 	- `2 5`
 
 	- `0 4`
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+If you simulate the problem, it will be O(n^2) which is not efficient.
+
+</details>
+
+<details>
+<summary><b>Gợi ý 2</b></summary>
+
+Try to use two-pointers. Set one pointer to the left and one to the right of the array. Always move the pointer that points to the lower line.
+
+</details>
+
+<details>
+<summary><b>Gợi ý 3</b></summary>
+
+How can you calculate the amount of water at each step?
+
+</details>
+

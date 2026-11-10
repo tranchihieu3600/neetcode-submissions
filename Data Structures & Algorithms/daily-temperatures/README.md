@@ -48,3 +48,14 @@ Example 3:**
 	- `1 5`
 
 	- `30 <= temperatures[i] <= 100`
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+If the temperature is say, 70 today, then in the future a warmer temperature must be either 71, 72, 73, ..., 99, or 100.  We could remember when all of them occur next.
+
+</details>
+

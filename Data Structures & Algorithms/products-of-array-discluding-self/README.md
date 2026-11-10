@@ -58,3 +58,21 @@ Example 2:**
 
 
 **Follow up:** Can you solve the problem in `O(1)` extra space complexity? (The output array **does not** count as extra space for space complexity analysis.)
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+Think how you can efficiently utilize prefix and suffix products to calculate the product of all elements except self for each index. Can you pre-compute the prefix and suffix products in linear time to avoid redundant calculations?
+
+</details>
+
+<details>
+<summary><b>Gợi ý 2</b></summary>
+
+Can you minimize additional space usage by reusing memory or modifying the input array to store intermediate results?
+
+</details>
+

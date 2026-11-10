@@ -63,3 +63,14 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 	- `0 5`
 
 	- `s` consists of English letters, digits, symbols and spaces.
+
+---
+## Gợi ý (Hints)
+
+<details>
+<summary><b>Gợi ý 1</b></summary>
+
+There are less than 100 unique characters. We can check all substrings with length at most 100 for example. This is a good enough approximation.
+
+</details>
+
