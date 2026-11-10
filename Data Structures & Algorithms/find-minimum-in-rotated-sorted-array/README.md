@@ -103,7 +103,7 @@ Array was originally in ascending order. Now that the array is rotated, there wo
 <details>
 <summary><b>Gợi ý 2</b></summary>
 
-You can divide the search space into two and see which direction to go.
+You can divide the search space into two and see which direction to go.
 Can you think of an algorithm which has O(logN) search complexity?
 
 </details>
@@ -112,7 +112,7 @@ Can you think of an algorithm which has O(logN) search complexity?
 <summary><b>Gợi ý 3</b></summary>
 
 - All the elements to the left of inflection point > first element of the array.
-
+
 - All the elements to the right of inflection point
 
 </details>
